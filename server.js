@@ -31,9 +31,9 @@ app.get( '/', function( req, res ){
 app.get( '/*' , function( req, res, next ) {
     //This is the current file they have requested
 	var file = req.params[0];
-    
+
     if(file in cache){
-        res.send(cache[file]);
+        res.sendfile(cache[file]);
     }
 	else {
         res.sendfile( __dirname + '/' + file );
