@@ -1,7 +1,7 @@
 {
-  "name": "OpenShift-Sample-App",
+  "name": "home",
   "version": "1.0.0",
-  "description": "OpenShift Sample Application",
+  "description": "mmercedes homepage server",
   "keywords": [
     "OpenShift",
     "Node.js",
@@ -9,14 +9,14 @@
     "openshift"
   ],
   "author": {
-    "name": "OpenShift",
+    "name": "Matt Mercedes",
     "email": "ramr@example.org",
     "url": "http://www.openshift.com/"
   },
   "homepage": "http://www.openshift.com/",
   "repository": {
     "type": "git",
-    "url": "https://github.com/openshift/origin-server"
+    "url": "https://github.com/mmercedes"
   },
 
   "engines": {

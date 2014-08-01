@@ -10,10 +10,37 @@ var server = http.createServer(app);
 
 
 var cache = {};
-cache['home.html'] = fs.readFileSync('home.html');
-cache['resume.html'] = fs.readFileSync('resume.html');
-cache['home.css'] = fs.readFileSync('home.css');
-cache['resume.css'] = fs.readFileSync('resume.css');
+var cacheSize = 0;
+var MAX_CACHE_SIZE = 256 * 1000000;
+
+function cache_add(fileName, contentType){
+    var stats = fs.statSync(fileName);
+    var size = stats["size"] / 1000000; // convert bytes to mb
+    var obj = {};
+
+    if(cacheSize + size > MAX_CACHE_SIZE){
+        console.log("CACHE_FULL");
+        return 1;
+    }
+    obj.file = fs.readFileSync(fileName);
+    obj.type = contentType;
+
+    cache[fileName] = obj;
+    cacheSize += size;
+
+    console.log("CACHED: "+fileName);
+    console.log("SIZE: "+size+"mb TOTAL: "+cacheSize+"mb");
+    return 0;
+}
+
+cache_add("home.html", "text/html");
+cache_add("home.css", "text/css");
+cache_add("resume.html", "text/html");
+cache_add("resume.css", "text/css");
+cache_add("img/noisy_net.png", "image/png");
+
+cache_add("bootstrap/js/bootstrap.min.js", "application/javascript");
+cache_add("bootstrap/css/bootstrap.min.css", "text/css");
 
 
 if (typeof ip === "undefined") {
@@ -34,8 +61,8 @@ app.get( '/*' , function( req, res, next ) {
 	var file = req.params[0];
 
     if(file in cache){
-        res.setHeader('Content-Type', 'text/html');
-        res.send(cache[file]);
+        res.setHeader('Content-Type', cache[file].type);
+        res.send(cache[file].file);
     }
     else {
         res.sendfile( __dirname + '/' + file );
