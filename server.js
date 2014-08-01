@@ -11,11 +11,11 @@ var server = http.createServer(app);
 
 var cache = {};
 var cacheSize = 0;
-var MAX_CACHE_SIZE = 256 * 1000000;
+var MAX_CACHE_SIZE = 2000 * 1000;
 
 function cache_add(fileName, contentType){
     var stats = fs.statSync(fileName);
-    var size = stats["size"] / 1000000; // convert bytes to mb
+    var size = stats["size"] / 1000; // convert bytes to kb
     var obj = {};
 
     if(cacheSize + size > MAX_CACHE_SIZE){
@@ -28,8 +28,8 @@ function cache_add(fileName, contentType){
     cache[fileName] = obj;
     cacheSize += size;
 
-    console.log("CACHED: "+fileName);
-    console.log("SIZE: "+size+"mb TOTAL: "+cacheSize+"mb");
+    console.log("CACHED: "+fileName+" "+obj.type);
+    console.log("SIZE: "+size+"kb TOTAL: "+cacheSize+"kb\n");
     return 0;
 }
 
