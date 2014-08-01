@@ -112,12 +112,6 @@ h4 span:first-child {
     padding-right: 30px;
 }
 
-#pdf {
-    position: absolute;
-    left: 4%;
-    top: 10%;
-}
-
 #work .position,
 #volunteer .position {
     font-weight: bold;

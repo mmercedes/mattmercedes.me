@@ -28,7 +28,7 @@ function cache_add(fileName, contentType){
     cache[fileName] = obj;
     cacheSize += size;
 
-    console.log("CACHED: "+fileName+" "+obj.type);
+    console.log("CACHED: "+fileName);
     console.log("SIZE: "+size+"kb TOTAL: "+cacheSize+"kb\n");
     return 0;
 }
