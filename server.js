@@ -1,24 +1,30 @@
 
-var express = require("express");
+/* SERVER STATE GLOBALS */
+var ip = process.env.OPENSHIFT_NODEJS_IP;
+var port = parseInt(process.env.OPENSHIFT_NODEJS_PORT) || 8080;
+var fs = require('fs');
+var express = require('express');
+var http = require('http');
 var app = express();
+var server = http.createServer(app);
 
-/* serves main page */
-app.get("/", function(req, res) {
-    res.sendfile('index.htm')
+
+
+if (typeof ip === "undefined") {
+    console.warn('No OPENSHIFT_NODEJS_IP var, using localhost');
+    ip = "localhost";
+};
+
+server.listen(port, ip, function (){
+    console.log("\n STARTED SERVER ON PORT " + port + "\n");
 });
 
-  app.post("/user/add", function(req, res) {
-    /* some server side logic */
-    res.send("OK");
-  });
-
-/* serves all the static files */
-app.get(/^(.+)$/, function(req, res){
-     console.log('static file request : ' + req.params);
-     res.sendfile( __dirname + req.params[0]);
+app.get( '/', function( req, res ){
+    res.sendfile('home.html');
 });
 
-var port = process.env.OPENSHIFT_NODEJS_PORT || 8080;
-app.listen(port, function() {
-   console.log("Listening on " + port);
+app.get( '/*' , function( req, res, next ) {
+    //This is the current file they have requested
+	var file = req.params[0];
+	res.sendfile( __dirname + '/' + file );
 });
