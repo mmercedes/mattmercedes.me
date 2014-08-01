@@ -8,6 +8,11 @@ var http = require('http');
 var app = express();
 var server = http.createServer(app);
 
+var cache = {};
+cache['home.html'] = fs.readFileSync('home.html');
+cache['resume.html'] = fs.readFileSync('resume.html');
+cache['home.css'] = fs.readFileSync('home.css');
+cache['resume.css'] = fs.readFileSync('resume.css');
 
 
 if (typeof ip === "undefined") {
@@ -26,5 +31,11 @@ app.get( '/', function( req, res ){
 app.get( '/*' , function( req, res, next ) {
     //This is the current file they have requested
 	var file = req.params[0];
-	res.sendfile( __dirname + '/' + file );
+    
+    if(file in cache){
+        res.send(cache[file]);
+    }
+	else {
+        res.sendfile( __dirname + '/' + file );
+    }
 });
