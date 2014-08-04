@@ -34,10 +34,10 @@ function cache_add(fileName, contentType){
 }
 
 cache_add("home.html", "text/html");
-cache_add("home.css", "text/css");
+cache_add("css/home.css", "text/css");
 cache_add("resume.html", "text/html");
-cache_add("resume.css", "text/css");
-cache_add("img/noisy_net.png", "image/png");
+cache_add("css/resume.css", "text/css");
+cache_add("css/noisy_net.png", "image/png");
 
 cache_add("bootstrap/js/bootstrap.min.js", "application/javascript");
 cache_add("bootstrap/css/bootstrap.min.css", "text/css");
@@ -65,6 +65,8 @@ app.get( '/*' , function( req, res, next ) {
         res.send(cache[file].file);
     }
     else {
-        res.sendfile( __dirname + '/' + file );
+        res.sendfile( __dirname + '/' + file , function(err){
+            res.sendfile('404.html');
+        });
     }
 });
