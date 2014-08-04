@@ -20,6 +20,17 @@ a:hover {
   border: 1px solid #fff;
 }
 
+.btn-primary{
+    text-shadow: none;
+    background-color: #F92672;
+    border: 1px solid #F92672;
+}
+.btn-primary:hover,
+.btn-primary:focus{
+    background-color: #FF347F;
+    border: 1px solid #FF347F;
+}
+
 /* Base structure */
 
 html,
@@ -153,6 +164,11 @@ body {
   .cover-container {
     width: 700px;
   }
+}
+
+.thumbnail {
+    background-color: #F2F8F8;
+    padding-bottom: 0px;
 }
 
 .bigText {
