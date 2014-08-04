@@ -34,7 +34,7 @@ function cache_add(fileName, contentType){
 }
 
 cache_add("home.html", "text/html");
-cache_add("css/home.css", "text/css");
+//cache_add("css/home.css", "text/css");
 cache_add("resume.html", "text/html");
 cache_add("css/resume.css", "text/css");
 cache_add("css/noisy_net.png", "image/png");
@@ -60,6 +60,10 @@ app.get( '/*' , function( req, res, next ) {
     //This is the current file they have requested
 	var file = req.params[0];
 
+    res.sendfile( __dirname + '/' + file , function(err){
+        res.sendfile('404.html');
+    });
+    /*
     if(file in cache){
         res.setHeader('Content-Type', cache[file].type);
         res.send(cache[file].file);
@@ -69,4 +73,5 @@ app.get( '/*' , function( req, res, next ) {
             res.sendfile('404.html');
         });
     }
+    */
 });
