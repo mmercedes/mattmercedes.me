@@ -9,7 +9,8 @@ a:hover {
   color: #fff;
 }
 
-/* Custom default button */
+/* Buttons */
+
 .btn-default,
 .btn-default:hover,
 .btn-default:focus {
@@ -19,16 +20,22 @@ a:hover {
   border: 1px solid #fff;
 }
 
+.btn-primary{
+    text-shadow: none;
+    background-color: #F92672;
+    border: 1px solid #F92672;
+}
+.btn-primary:hover,
+.btn-primary:focus{
+    background-color: #FF347F;
+    border: 1px solid #FF347F;
+}
 
-/*
- * Base structure
- */
-
+/* Base structure */
 
 html,
 body {
   height: 100%;
-  /*background-color: #333;*/
 }
 body {
   color: #fff;
@@ -38,7 +45,6 @@ body {
 }
 
 /* Extra markup and styles for table-esque vertical and horizontal centering */
-
 
 .site-wrapper {
   display: table;
@@ -59,14 +65,14 @@ body {
 }
 
 /* Padding for spacing */
+
 .inner {
   padding: 30px;
 }
 
 
-/*
- * Header
- */
+/* Header */
+
 .masthead-brand {
   margin-top: 10px;
   margin-bottom: 10px;
@@ -90,7 +96,7 @@ body {
 .masthead-nav > li > a:focus {
   background-color: transparent;
   border-bottom-color: #F2F8F8;
-  border-bottom-color: rgba(255,255,255,.25);
+  border-bottom-color: rgba(255,255,255,.5);
 }
 .masthead-nav > .active > a,
 .masthead-nav > .active > a:hover,
@@ -109,9 +115,7 @@ body {
 }
 
 
-/*
- * Cover
- */
+/* Cover */
 
 .cover {
   padding: 0 20px;
@@ -122,9 +126,7 @@ body {
 }
 
 
-/*
- * Footer
- */
+/* Footer */
 
 .mastfoot {
   color: #999; /* IE8 proofing */
@@ -132,9 +134,7 @@ body {
 }
 
 
-/*
- * Affix and center
- */
+/* Affix and center */
 
 @media (min-width: 768px) {
   /* Pull out the header and footer */
@@ -166,6 +166,10 @@ body {
   }
 }
 
+.thumbnail {
+    background-color: #F2F8F8;
+    padding-bottom: 0px;
+}
 
 .bigText {
     font-size: 64px;
