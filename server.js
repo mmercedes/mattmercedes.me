@@ -34,8 +34,9 @@ function cache_add(fileName, contentType){
 }
 
 cache_add("home.html", "text/html");
-//cache_add("css/home.css", "text/css");
 cache_add("resume.html", "text/html");
+cache_add("projects.html", "text/html");
+cache_add("css/home.css", "text/css");
 cache_add("css/resume.css", "text/css");
 cache_add("css/noisy_net.png", "image/png");
 
@@ -53,25 +54,21 @@ server.listen(port, ip, function (){
 });
 
 app.get( '/', function( req, res ){
-    res.sendfile('home.html');
+    res.set('Content-Type', 'text/html');
+    res.send(cache['home.html'].file);
 });
 
 app.get( '/*' , function( req, res, next ) {
     //This is the current file they have requested
 	var file = req.params[0];
 
-    res.sendfile( __dirname + '/' + file , function(err){
-        res.sendfile('404.html');
-    });
-    /*
     if(file in cache){
-        res.setHeader('Content-Type', cache[file].type);
+        res.set('Content-Type', cache[file].type);
         res.send(cache[file].file);
     }
     else {
-        res.sendfile( __dirname + '/' + file , function(err){
+        res.sendfile( __dirname +'/'+ file , function(err){
             res.sendfile('404.html');
         });
     }
-    */
 });
