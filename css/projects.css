@@ -9,15 +9,15 @@ a:hover {
   color: #fff;
 }
 
-/* Buttons */
-
-.btn-default,
-.btn-default:hover,
-.btn-default:focus {
-  color: #333;
-  text-shadow: none; /* Prevent inheritence from `body` */
-  background-color: #fff;
-  border: 1px solid #fff;
+.btn-primary{
+    text-shadow: none;
+    background-color: #F92672;
+    border: 1px solid #F92672;
+}
+.btn-primary:hover,
+.btn-primary:focus{
+    background-color: #FF347F;
+    border: 1px solid #FF347F;
 }
 
 /* Base structure */
@@ -115,14 +115,6 @@ body {
 }
 
 
-/* Footer */
-
-.mastfoot {
-  color: #999; /* IE8 proofing */
-  color: rgba(255,255,255,.5);
-}
-
-
 /* Affix and center */
 
 @media (min-width: 768px) {
@@ -131,17 +123,12 @@ body {
     position: fixed;
     top: 0;
   }
-  .mastfoot {
-    position: fixed;
-    bottom: 0;
-  }
   /* Start the vertical centering */
   .site-wrapper-inner {
     vertical-align: middle;
   }
   /* Handle the widths */
   .masthead,
-  .mastfoot,
   .cover-container {
     width: 100%; /* Must be percentage or pixels for horizontal alignment */
   }
@@ -149,12 +136,12 @@ body {
 
 @media (min-width: 992px) {
   .masthead,
-  .mastfoot,
   .cover-container {
     width: 700px;
   }
 }
 
-.bigText {
-    font-size: 64px;
+.thumbnail {
+    background-color: #F2F8F8;
+    padding-bottom: 0px;
 }
