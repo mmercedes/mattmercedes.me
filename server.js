@@ -13,8 +13,8 @@ var cache = {};
 var cacheSize = 0;
 var MAX_CACHE_SIZE = 2000 * 1000;
 
-function cache_add(fileName, contentType){
-    var stats = fs.statSync(fileName);
+function cache_add(path, fileName, contentType){
+    var stats = fs.statSync(path+fileName);
     var size = stats["size"] / 1000; // convert bytes to kb
     var obj = {};
 
@@ -22,7 +22,7 @@ function cache_add(fileName, contentType){
         console.log("CACHE_FULL");
         return 1;
     }
-    obj.file = fs.readFileSync(fileName);
+    obj.file = fs.readFileSync(path+fileName);
     obj.type = contentType;
 
     cache[fileName] = obj;
@@ -33,15 +33,14 @@ function cache_add(fileName, contentType){
     return 0;
 }
 
-cache_add("home.html", "text/html");
-cache_add("resume.html", "text/html");
-cache_add("projects.html", "text/html");
-cache_add("css/home.css", "text/css");
-cache_add("css/resume.css", "text/css");
-cache_add("css/noisy_net.png", "image/png");
-
-cache_add("bootstrap/js/bootstrap.min.js", "application/javascript");
-cache_add("bootstrap/css/bootstrap.min.css", "text/css");
+cache_add("", "home.html", "text/html");
+cache_add("home/", "resume.html", "text/html");
+cache_add("home/", "projects.html", "text/html");
+cache_add("home/", "css/home.css", "text/css");
+cache_add("home/", "css/resume.css", "text/css");
+cache_add("home/", "css/noisy_net.png", "image/png");
+cache_add("home/", "bootstrap/js/bootstrap.min.js", "application/javascript");
+cache_add("home/", "bootstrap/css/bootstrap.min.css", "text/css");
 
 
 if (typeof ip === "undefined") {
@@ -58,17 +57,27 @@ app.get( '/', function( req, res ){
     res.send(cache['home.html'].file);
 });
 
-app.get( '/*' , function( req, res, next ) {
+app.get( '/home/*' , function( req, res, next ) {
     //This is the current file they have requested
 	var file = req.params[0];
+
+    console.log(file);
 
     if(file in cache){
         res.set('Content-Type', cache[file].type);
         res.send(cache[file].file);
     }
     else {
-        res.sendfile( __dirname +'/'+ file , function(err){
-            res.sendfile('404.html');
+        res.sendfile( __dirname +'/home/'+ file , function(err){
+            res.sendfile('home/404.html');
         });
     }
 });
+
+app.get('/blog/*', function(req, res, next){
+    res.set('Content-Type', 'text/html');
+    res.send('<html><body><h1>blog is currently in progress</h1></body></html>');
+});
+
+
+/* test comment */
