@@ -1,7 +1,7 @@
 {
   "name": "home",
   "version": "1.0.0",
-  "description": "mmercedes homepage server",
+  "description": "mmercedes.me server",
   "keywords": [
     "OpenShift",
     "Node.js",
@@ -10,13 +10,13 @@
   ],
   "author": {
     "name": "Matt Mercedes",
-    "email": "ramr@example.org",
-    "url": "http://www.openshift.com/"
+    "email": "matthewmercedes@gmail.com",
+    "url": "http://mattmercedes.me/"
   },
-  "homepage": "http://www.openshift.com/",
+  "homepage": "http://mattmercedes.me/",
   "repository": {
     "type": "git",
-    "url": "https://github.com/mmercedes"
+    "url": "https://github.com/mmercedes/"
   },
 
   "engines": {
