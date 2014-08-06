@@ -17,7 +17,7 @@ Blog = function(user, pass){
     var connectUrl = "mongodb://"+user+":"+pass+"@"+host+":"+port+"/home";
 
     MongoClient.connect(connectUrl, {native_parser:true}, function(err, db) {
-        Blog.db = db;
+        Blog.prototype.db = db;
     });
     /*
     this.db = new Db('home', new Server(host, port, {auto_reconnect: true, socketOptions:{keepAlive: 1}}, {}));
