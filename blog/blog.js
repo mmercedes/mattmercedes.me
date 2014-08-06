@@ -19,7 +19,7 @@ Blog = function(user, pass){
 Blog.prototype.getCollection = function(callback){
     console.log("calling db.collection");
     this.db.collection('posts', function(error, collection){
-        console.log("returned from db.collection :"+error.toString());
+        console.log("returned from db.collection :"+error);
         if(error) callback(error);
         else callback(null, collection);
     });
@@ -31,6 +31,7 @@ Blog.prototype.findAll = function(callback){
         if(error) callback(error);
         else {
             collection.find().toArray(function(error, results){
+                console.log("findAll results :"+results);
                 if(error) callback(error);
                 else callback(null, results);
             });
