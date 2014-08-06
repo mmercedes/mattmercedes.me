@@ -48,9 +48,9 @@ Blog.prototype.findAll = function(callback){
     this.getCollection(function(error, collection){
         if(error) callback(error);
         else {
-            console.log("OE: "+this.openError);
             collection.find().toArray(function(error, results){
                 console.log("findAll results :"+results);
+                console.log(JSON.stringify(obj, null, 4));
                 if(error) callback(error);
                 else callback(null, results);
             });
