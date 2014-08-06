@@ -1,0 +1,14 @@
+// template for blog post collection
+{
+  _id: 0,
+  url: 'article-title'
+  title: 'Article Title',
+  preview: '<h3>preview</h3>',
+  body: '<p>body</p>',
+  comments: [{
+    user: 'name',
+    comment: 'text',
+    created: new Date()
+  }],
+  created: new Date()
+}

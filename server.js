@@ -5,6 +5,7 @@ var port = parseInt(process.env.OPENSHIFT_NODEJS_PORT) || 8080;
 var fs = require('fs');
 var express = require('express');
 var http = require('http');
+var Blog = require('./blog/blog').Blog;
 var app = express();
 var server = http.createServer(app);
 
@@ -52,6 +53,10 @@ server.listen(port, ip, function (){
     console.log("\n STARTED SERVER ON PORT " + port + "\n");
 });
 
+
+blog = new Blog();
+
+
 app.get( '/', function( req, res ){
     res.set('Content-Type', 'text/html');
     res.send(cache['home.html'].file);
@@ -76,7 +81,7 @@ app.get( '/home/*' , function( req, res, next ) {
 
 app.get('/blog/*', function(req, res, next){
     res.set('Content-Type', 'text/html');
-    res.send('<html><body><h1>blog is currently in progress</h1></body></html>');
+    res.send(blog.getPage());
 });
 
 
