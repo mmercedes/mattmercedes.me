@@ -50,7 +50,7 @@ Blog.prototype.findAll = function(callback){
         else {
             collection.find().toArray(function(error, results){
                 console.log("findAll results :"+results);
-                console.log(JSON.stringify(obj, null, 4));
+                console.log(JSON.stringify(results, null, 4));
                 if(error) callback(error);
                 else callback(null, results);
             });
