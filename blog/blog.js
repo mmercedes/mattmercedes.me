@@ -21,7 +21,10 @@ Blog = function(user, pass){
         assert.equal(null, err);
         assert.ok(db != null);
         this.db = db;
+        assert.ok(this.db != null);
     });
+    console.log("HERE");
+    assert.ok(this.db!= null);
     /*
     this.db = new Db('home', new Server(host, port, {auto_reconnect: true, socketOptions:{keepAlive: 1}}, {}));
     console.log(typeof(this.db));
