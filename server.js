@@ -52,7 +52,6 @@ if (typeof ip === "undefined") {
 
 
 blog = new Blog(keys.dbUser, keys.dbPass);
-if(blog.error){console.log(error.toString())};
 
 server.listen(port, ip, function (){
     console.log("\n STARTED SERVER ON PORT " + port + "\n");
@@ -81,6 +80,7 @@ app.get( '/home/*' , function( req, res, next ) {
 });
 
 app.get('/blog/*', function(req, res, next){
+    console.log(blog.error);
     blog.getPage(0, function(error, page){
         res.set('Content-Type', 'text/html');
         if(error){
