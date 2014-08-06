@@ -80,8 +80,16 @@ app.get( '/home/*' , function( req, res, next ) {
 });
 
 app.get('/blog/*', function(req, res, next){
-    res.set('Content-Type', 'text/html');
-    res.send(blog.getPage());
+    blog.getPage(0, function(error, page){
+        res.set('Content-Type', 'text/html');
+        if(error){
+            console.log(error);
+            res.send("error : "+error.toString());
+        }
+        else {
+            res.send(page);
+        }
+    });
 });
 
 
