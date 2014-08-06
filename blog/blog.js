@@ -1,6 +1,8 @@
 var Db = require('mongodb').Db;
 var Connection = require('mongodb').Connection;
 var Server = require('mongodb').Server;
+var MongoClient = require('mongodb').MongoClient
+var assert = require('assert');
 
 var host = process.env.OPENSHIFT_MONGODB_DB_HOST;
 var port = process.env.OPENSHIFT_MONGODB_DB_PORT;
@@ -12,6 +14,15 @@ var footer = '</body></html>';
 Blog = function(user, pass){
     this.openError = true;
 
+    var connectUrl = "mongodb://"+user+":"+pass+"@"+host+":"+port+"/home";
+
+    MongoClient.connect(connectUrl, {native_parser:true}, function(err, db) {
+        console.log(err);
+        assert.equal(null, err);
+        assert.ok(db != null);
+        this.db = db;
+    });
+    /*
     this.db = new Db('home', new Server(host, port, {auto_reconnect: true, socketOptions:{keepAlive: 1}}, {}));
     console.log(typeof(this.db));
     this.db.open(function(error){
@@ -22,6 +33,7 @@ Blog = function(user, pass){
             else this.openError = false;
         });
     });
+    */
 };
 
 
