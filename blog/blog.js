@@ -14,7 +14,7 @@ Blog = function(user, pass){
 
     this.db = new Db('home', new Server(host, port, {auto_reconnect: true, socketOptions:{keepAlive: 1}}, {}));
     this.db.open(function(error){
-        db.authenticate(user, pass, {}, function(error, result){
+        this.db.authenticate(user, pass, {}, function(error, result){
             if(error) this.openError = error;
             else this.openError = false;
         });
