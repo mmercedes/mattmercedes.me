@@ -12,11 +12,12 @@ var footer = '</body></html>';
 Blog = function(user, pass){
     this.openError = true;
 
-    host = user +":"+ pass +"@"+ host;
     this.db = new Db('home', new Server(host, port, {auto_reconnect: true, socketOptions:{keepAlive: 1}}, {}));
     this.db.open(function(error){
-        if(error) this.openError = error;
-        else this.openError = false;
+        db.authenticate(user, pass, {}, function(error, result){
+            if(error) this.openError = error;
+            else this.openError = false;
+        });
     });
 };
 
