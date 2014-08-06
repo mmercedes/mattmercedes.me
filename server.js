@@ -6,6 +6,7 @@ var fs = require('fs');
 var express = require('express');
 var http = require('http');
 var Blog = require('./blog/blog').Blog;
+var keys = require('./verification/keys.js').keys;
 var app = express();
 var server = http.createServer(app);
 
@@ -49,13 +50,13 @@ if (typeof ip === "undefined") {
     ip = "localhost";
 };
 
+
+blog = new Blog(keys.dbUser, keys.dbPass);
+
+
 server.listen(port, ip, function (){
     console.log("\n STARTED SERVER ON PORT " + port + "\n");
 });
-
-
-blog = new Blog();
-
 
 app.get( '/', function( req, res ){
     res.set('Content-Type', 'text/html');

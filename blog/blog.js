@@ -9,9 +9,10 @@ var header = '<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta h
 var footer = '</body></html>';
 
 
-Blog = function(){
-  this.db= new Db('home', new Server(host, port, {auto_reconnect: true}, {}));
-  this.db.open(function(){});
+Blog = function(user, pass){
+    host = user +":"+ pass +"@"+ host;
+    this.db= new Db('home', new Server(host, port, {auto_reconnect: true}, {}));
+    this.db.open(function(){});
 };
 
 
