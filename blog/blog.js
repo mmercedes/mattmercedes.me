@@ -11,8 +11,8 @@ var footer = '</body></html>';
 
 Blog = function(user, pass){
     host = user +":"+ pass +"@"+ host;
-    this.db = new Db('home', new Server(host, port, {auto_reconnect: true, socketOptions:{keepAlive: 1}}, {}));
-
+    //this.db = new Db('home', new Server(host, port, {auto_reconnect: true, socketOptions:{keepAlive: 1}}, {}));
+    this.db = new Db('home', new Server(host, port, {}));
     this.db.open(function(error){this.error = error});
 };
 
