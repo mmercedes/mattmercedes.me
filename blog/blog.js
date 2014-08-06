@@ -12,45 +12,26 @@ var footer = '</body></html>';
 
 
 Blog = function(user, pass){
-    this.openError = true;
-
     var connectUrl = "mongodb://"+user+":"+pass+"@"+host+":"+port+"/home";
 
     MongoClient.connect(connectUrl, {native_parser:true}, function(err, db) {
         Blog.prototype.db = db;
     });
-    /*
-    this.db = new Db('home', new Server(host, port, {auto_reconnect: true, socketOptions:{keepAlive: 1}}, {}));
-    console.log(typeof(this.db));
-    this.db.open(function(error){
-        console.log(error);
-        console.log(typeof(this.db));
-        this.db.authenticate(user, pass, {}, function(error, result){
-            if(error) this.openError = error;
-            else this.openError = false;
-        });
-    });
-    */
 };
 
 
 Blog.prototype.getCollection = function(callback){
-    console.log("calling db.collection");
     this.db.collection('posts', function(error, collection){
-        console.log("returned from db.collection : "+error+" "+(collection != null));
         if(error) callback(error);
         else callback(null, collection);
     });
 };
 
 Blog.prototype.findAll = function(callback){
-    console.log("calling getColllection");
     this.getCollection(function(error, collection){
         if(error) callback(error);
         else {
             collection.find().toArray(function(error, results){
-                console.log("findAll results :"+results);
-                console.log(JSON.stringify(results, null, 4));
                 if(error) callback(error);
                 else callback(null, results);
             });
@@ -84,12 +65,15 @@ Blog.prototype.addPost = function(post, callback){
 };
 
 Blog.prototype.getPage = function(offset, callback){
-    console.log(host);
-    console.log("calling findAll");
     this.findAll(function(error, results){
             if(error) callback(error);
             else {
-                callback(null, header+results.title+results.body+footer);
+                var page = header;
+                results.forEach(function(post, index, array){
+                    page += post.preview + post.body;
+                });
+                page += footer;
+                callback(null, page);
             }
     });
 };

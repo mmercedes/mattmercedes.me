@@ -80,7 +80,6 @@ app.get( '/home/*' , function( req, res, next ) {
 });
 
 app.get('/blog/*', function(req, res, next){
-    console.log("called getPage");
     blog.getPage(0, function(error, page){
         res.set('Content-Type', 'text/html');
         if(error){
