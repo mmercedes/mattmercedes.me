@@ -89,7 +89,7 @@ app.get('/blog/*', function(req, res, next){
     });
 });
 
-app.get('/bootstrap/*' function(req, res, next){
+app.get('/bootstrap/*', function(req, res, next){
     var file = req.params[0];
 
     if(file in cache){
