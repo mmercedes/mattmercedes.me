@@ -41,8 +41,8 @@ cache_add("home/", "projects.html", "text/html");
 cache_add("home/", "css/home.css", "text/css");
 cache_add("home/", "css/resume.css", "text/css");
 cache_add("home/", "css/noisy_net.png", "image/png");
-cache_add("home/", "bootstrap/js/bootstrap.min.js", "application/javascript");
-cache_add("home/", "bootstrap/css/bootstrap.min.css", "text/css");
+cache_add("", "bootstrap/js/bootstrap.min.js", "application/javascript");
+cache_add("", "bootstrap/css/bootstrap.min.css", "text/css");
 
 
 if (typeof ip === "undefined") {
@@ -57,12 +57,12 @@ server.listen(port, ip, function (){
     console.log("\n STARTED SERVER ON PORT " + port + "\n");
 });
 
-app.get( '/', function( req, res ){
+app.get('/', function( req, res ){
     res.set('Content-Type', 'text/html');
     res.send(cache['home.html'].file);
 });
 
-app.get( '/home/*' , function( req, res, next ) {
+app.get('/home/*' , function( req, res, next ) {
     //This is the current file they have requested
 	var file = req.params[0];
 
@@ -74,7 +74,7 @@ app.get( '/home/*' , function( req, res, next ) {
     }
     else {
         res.sendfile( __dirname +'/home/'+ file , function(err){
-            res.sendfile('home/404.html');
+            res.status(404).sendfile('home/404.html');
         });
     }
 });
@@ -92,5 +92,8 @@ app.get('/blog/*', function(req, res, next){
     });
 });
 
+app.get('/*', function(req, res, next){
+    res.status(404).sendfile('home/404.html');
+});
 
 /* test comment */
