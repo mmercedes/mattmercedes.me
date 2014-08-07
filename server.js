@@ -63,17 +63,14 @@ app.get('/', function( req, res ){
 });
 
 app.get('/home/*' , function( req, res, next ) {
-    //This is the current file they have requested
 	var file = req.params[0];
-
-    console.log(file);
 
     if(file in cache){
         res.set('Content-Type', cache[file].type);
         res.send(cache[file].file);
     }
     else {
-        res.sendfile( __dirname +'/home/'+ file , function(err){
+        res.sendfile( __dirname +'/home/'+ file, function(err){
             res.status(404).sendfile('home/404.html');
         });
     }
@@ -91,6 +88,20 @@ app.get('/blog/*', function(req, res, next){
         }
     });
 });
+
+app.get('/bootstrap/*' function(req, res, next){
+    var file = req.params[0];
+
+    if(file in cache){
+        res.set('Content-Type', cache[file].type);
+        res.send(cache[file].file);
+    }
+    else {
+        res.sendfile( __dirname +'/bootstrap/'+ file, function(err){
+            res.status(404).sendfile('home/404.html');
+        });
+    }
+})
 
 app.get('/*', function(req, res, next){
     res.status(404).sendfile('home/404.html');
