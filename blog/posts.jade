@@ -1,0 +1,32 @@
+doctype html
+html
+    head
+        meta(charset= 'utf-8')
+        meta(http-equiv= 'X-UA-Compatible', content= 'IE=edge')
+        meta(name= 'viewport', content= 'width=device-width, initial-scale=1')
+        meta(name= 'description', content= "Matt Mercedes' Home Page")
+        meta(name= 'author', content= 'Matt Mercedes')
+
+        title Matt Mercedes' Blog
+
+        link(href= '../bootstrap/css/bootstrap.min.css', rel= 'stylesheet')
+        link(href= 'css/blog.css', rel= 'stylesheet')
+
+
+
+    body
+        div.site-wrapper
+            div.site-wrapper-inner
+                div.list-group
+                    a.list-group-item(href= '#')
+                        h4.list-group-item-heading= title
+                        p.list-group-item-text= body
+
+                ul.pager
+                    li
+                        a(href= '#') Prev
+                    li
+                        a(href= '#') Next
+
+        script(src= 'https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js')
+        script(src = '../bootstrap/js/bootstrap.min.js')

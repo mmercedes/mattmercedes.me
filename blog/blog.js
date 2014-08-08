@@ -2,13 +2,12 @@ var Db = require('mongodb').Db;
 var Connection = require('mongodb').Connection;
 var Server = require('mongodb').Server;
 var MongoClient = require('mongodb').MongoClient
-var assert = require('assert');
+var Jade = require('jade');
 
 var host = process.env.OPENSHIFT_MONGODB_DB_HOST;
 var port = process.env.OPENSHIFT_MONGODB_DB_PORT;
 
-var header = '<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="description" content="Matt Mercedes\' Blog"><meta name="author" content="Matt Mercedes"><link rel="icon" href="../../favicon.ico"><title>Matt Mercedes</title></head><body>';
-var footer = '</body></html>';
+var jade_posts;
 
 
 Blog = function(user, pass){
@@ -17,6 +16,8 @@ Blog = function(user, pass){
     MongoClient.connect(connectUrl, {native_parser:true}, function(err, db) {
         Blog.prototype.db = db;
     });
+
+    jade_posts = Jade.compileFile('posts.jade', {compileDebug: false});
 };
 
 
@@ -68,11 +69,9 @@ Blog.prototype.getPage = function(offset, callback){
     this.findAll(function(error, results){
             if(error) callback(error);
             else {
-                var page = header;
-                results.forEach(function(post, index, array){
-                    page += post.preview + post.body;
-                });
-                page += footer;
+                page = jade_posts({ title: results[0].title,
+                                    body: "TEST BODY...."   });
+                                    
                 callback(null, page);
             }
     });
