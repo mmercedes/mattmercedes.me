@@ -63,7 +63,7 @@ app.get('/', function(req, res ){
 });
 
 app.get('/404', function(req, res, next){
-    res.sendFile('404.html');
+    res.sendfile('404.html');
 })
 
 app.get('/home/*' , function(req, res, next ){
