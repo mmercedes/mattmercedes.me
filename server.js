@@ -71,7 +71,7 @@ app.get('/home/*' , function( req, res, next ) {
     }
     else {
         res.sendfile( __dirname +'/home/'+ file, function(err){
-            res.status(404).sendfile('/home/404.html');
+            res.status(404).redirect('http://mattmercedes.me/home/404.html');
         });
     }
 });
@@ -98,11 +98,11 @@ app.get('/bootstrap/*', function(req, res, next){
     }
     else {
         res.sendfile( __dirname +'/bootstrap/'+ file, function(err){
-            res.status(404).sendfile('/home/404.html');
+            res.status(404).redirect('http://mattmercedes.me/home/404.html');
         });
     }
 })
 
 app.get('/*', function(req, res, next){
-    res.status(404).sendfile('/home/404.html');
+    res.status(404).redirect('http://mattmercedes.me/home/404.html');
 });
