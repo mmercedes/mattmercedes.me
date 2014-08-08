@@ -17,7 +17,7 @@ Blog = function(user, pass){
         Blog.prototype.db = db;
     });
 
-    jade_posts = Jade.compileFile('posts.jade', {compileDebug: false});
+    jade_posts = Jade.compileFile('blog/posts.jade', {compileDebug: false});
 };
 
 
@@ -71,7 +71,7 @@ Blog.prototype.getPage = function(offset, callback){
             else {
                 page = jade_posts({ title: results[0].title,
                                     body: "TEST BODY...."   });
-                                    
+
                 callback(null, page);
             }
     });
