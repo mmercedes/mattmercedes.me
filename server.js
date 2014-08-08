@@ -57,12 +57,16 @@ server.listen(port, ip, function (){
     console.log("\n STARTED SERVER ON PORT " + port + "\n");
 });
 
-app.get('/', function( req, res ){
+app.get('/', function(req, res ){
     res.set('Content-Type', 'text/html');
     res.send(cache['home.html'].file);
 });
 
-app.get('/home/*' , function( req, res, next ) {
+app.get('/404', function(req, res, next){
+    res.sendFile('404.html');
+})
+
+app.get('/home/*' , function(req, res, next ){
 	var file = req.params[0];
 
     if(file in cache){
@@ -71,12 +75,12 @@ app.get('/home/*' , function( req, res, next ) {
     }
     else {
         res.sendfile( __dirname +'/home/'+ file, function(err){
-            res.status(404).redirect('http://mattmercedes.me/home/404.html');
+            res.status(404).redirect('http://mattmercedes.me/404');
         });
     }
 });
 
-app.get('/blog/', function(req, res, next){
+app.get('/blog', function(req, res, next){
     blog.getPage(0, function(error, page){
         res.set('Content-Type', 'text/html');
         if(error){
@@ -89,6 +93,14 @@ app.get('/blog/', function(req, res, next){
     });
 });
 
+app.get('/blog/*' , function( req, res, next ) {
+    var file = req.params[0];
+
+    res.sendfile( __dirname +'/blog/'+ file, function(err){
+        res.status(404).redirect('http://mattmercedes.me/404');
+    });
+});
+
 app.get('/bootstrap/*', function(req, res, next){
     var file = req.params[0];
 
@@ -98,11 +110,11 @@ app.get('/bootstrap/*', function(req, res, next){
     }
     else {
         res.sendfile( __dirname +'/bootstrap/'+ file, function(err){
-            res.status(404).redirect('http://mattmercedes.me/home/404.html');
+            res.status(404).redirect('http://mattmercedes.me/404');
         });
     }
 })
 
 app.get('/*', function(req, res, next){
-    res.status(404).redirect('http://mattmercedes.me/home/404.html');
+    res.status(404).redirect('http://mattmercedes.me/404');
 });
