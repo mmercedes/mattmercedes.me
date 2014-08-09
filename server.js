@@ -10,7 +10,6 @@ var keys = require('./verification/keys.js').keys;
 var app = express();
 var server = http.createServer(app);
 
-
 var cache = {};
 var cacheSize = 0;
 var MAX_CACHE_SIZE = 2000 * 1000;

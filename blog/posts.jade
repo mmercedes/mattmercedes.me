@@ -18,9 +18,10 @@ html
         div.site-wrapper
             div.site-wrapper-inner
                 div.list-group
-                    a.list-group-item(href= '#')
-                        h4.list-group-item-heading= title
-                        p.list-group-item-text= body
+                    - each post in posts
+                        a.list-group-item(href= 'posts/'+ post.url)
+                            h4.list-group-item-heading= post.title
+                            p.list-group-item-text= post.preview
 
                 ul.pager
                     li

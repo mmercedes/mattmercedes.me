@@ -3,8 +3,8 @@
   _id: 0,
   url: 'article-title'
   title: 'Article Title',
-  preview: '<h3>preview</h3>',
-  body: '<p>body</p>',
+  preview: '', // markdown
+  body: '',  // markdown
   comments: [{
     user: 'name',
     comment: 'text',
