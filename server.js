@@ -42,6 +42,8 @@ cache_add("home/", "css/resume.css", "text/css");
 cache_add("home/", "css/noisy_net.png", "image/png");
 cache_add("", "bootstrap/js/bootstrap.min.js", "application/javascript");
 cache_add("", "bootstrap/css/bootstrap.min.css", "text/css");
+cache_add("blog/", "css/noisy_net.png", "image/png");
+cache_add("blog/", "css/blog.css", "text/css");
 
 
 if (typeof ip === "undefined") {
@@ -95,9 +97,15 @@ app.get('/blog', function(req, res, next){
 app.get('/blog/*' , function( req, res, next ) {
     var file = req.params[0];
 
-    res.sendfile( __dirname +'/blog/'+ file, function(err){
-        res.status(404).redirect('http://mattmercedes.me/404');
-    });
+    if(file in cache){
+        res.set('Content-Type', cache[file].type);
+        res.send(cache[file].file);
+    }
+    else {
+        res.sendfile( __dirname +'/blog/'+ file, function(err){
+            res.status(404).redirect('http://mattmercedes.me/404');
+        });
+    }
 });
 
 app.get('/bootstrap/*', function(req, res, next){

@@ -125,7 +125,6 @@ body {
   font-weight: bold;
 }
 
-
 /* Footer */
 
 .mastfoot {
@@ -166,7 +165,8 @@ body {
   }
 }
 
-.thumbnail {
-    background-color: #F2F8F8;
-    padding-bottom: 0px;
+
+.list-group{
+    margin-right: 4%;
+    margin-left: 4%
 }
