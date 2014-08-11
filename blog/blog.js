@@ -8,6 +8,7 @@ var host = process.env.OPENSHIFT_MONGODB_DB_HOST;
 var port = process.env.OPENSHIFT_MONGODB_DB_PORT;
 
 var jade_posts;
+var jade_post;
 
 
 Blog = function(user, pass){
@@ -18,6 +19,7 @@ Blog = function(user, pass){
     });
 
     jade_posts = Jade.compileFile('blog/posts.jade', {compileDebug: false});
+    jade_post = Jade.compileFile('blog/post.jade', {compileDebug: false});
 };
 
 
@@ -72,6 +74,17 @@ Blog.prototype.getPage = function(offset, callback){
                 page = jade_posts({ posts: results});
 
                 callback(null, page);
+            }
+    });
+};
+
+Blog.prototype.getPost = function(url, callback){
+    this.findByUrl(url, function(error, results){
+            if(error) callback(error);
+            else {
+                post = jade_post({ post: results[0]});
+
+                callback(null, post);
             }
     });
 };

@@ -169,4 +169,9 @@ body {
 .list-group{
     margin-right: 4%;
     margin-left: 4%
+    text-align: left;
+}
+
+.li{
+    margin: 10px;
 }

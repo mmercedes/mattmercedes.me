@@ -94,7 +94,19 @@ app.get('/blog', function(req, res, next){
     });
 });
 
-app.get('/blog/*' , function( req, res, next ) {
+app.get('/blog/posts/*', function(req, res, next){
+    var post = req.params[0];
+
+    blog.getPost(post, function(error, post){
+        if(error) res.status(404).redirect('http://mattmercedes.me/404');
+        else {
+            res.set('Content-Type', 'text/html');
+            res.send(post);
+        }
+    });
+});
+
+app.get('/blog/*' , function(req, res, next ) {
     var file = req.params[0];
 
     if(file in cache){

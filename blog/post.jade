@@ -7,7 +7,7 @@ html
         meta(name= 'description', content= "Matt Mercedes' Blog")
         meta(name= 'author', content= 'Matt Mercedes')
 
-        title Matt Mercedes' Blog
+        title= post.title
 
         link(href= '../bootstrap/css/bootstrap.min.css', rel= 'stylesheet')
         link(href= '../blog/css/blog.css', rel= 'stylesheet')
@@ -17,17 +17,12 @@ html
     body
         div.site-wrapper
             div.site-wrapper-inner
-                div.list-group
-                    - each post in posts
-                        a.list-group-item(href= 'posts/'+ post.url)
-                            h4.list-group-item-heading= post.title
-                            p.list-group-item-text!= post.preview
+                div(class= 'panel panel-default')
 
-                ul.pager
-                    li
-                        a(href= '#') Prev
-                    li
-                        a(href= '#') Next
+                    div.panel-heading
+                        h3.panel-title= post.title
+
+                    div.panel-body!= post.body
 
         script(src= 'https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js')
         script(src= '../bootstrap/js/bootstrap.min.js')
