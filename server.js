@@ -94,10 +94,10 @@ app.get('/blog', function(req, res, next){
     });
 });
 
-app.get('/blog/posts/*', function(req, res, next){
-    var post = req.params[0];
+app.get('/blog/posts/:url', function(req, res, next){
+    console.log(req.params.url);
 
-    blog.getPost(post, function(error, post){
+    blog.getPost(req.params.url, function(error, post){
         if(error) res.status(404).redirect('http://mattmercedes.me/404');
         else {
             res.set('Content-Type', 'text/html');
