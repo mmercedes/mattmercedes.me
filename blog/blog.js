@@ -82,8 +82,8 @@ Blog.prototype.getPost = function(url, callback){
     this.findByUrl(url, function(error, results){
             if(error) callback(error);
             else {
-                console.log("RESULTS: "+results);
-                post = jade_post({ post: results[0]});
+                console.log("RESULTS: "+results[0]);
+                post = jade_post({post: results[0]});
 
                 callback(null, post);
             }
