@@ -56,14 +56,17 @@ server.listen(port, ip, function (){
     console.log("\n STARTED SERVER ON PORT " + port + "\n");
 });
 
+
 app.get('/', function(req, res ){
     res.set('Content-Type', 'text/html');
     res.send(cache['home.html'].file);
 });
 
+
 app.get('/404', function(req, res, next){
     res.sendfile('404.html');
 })
+
 
 app.get('/home/*' , function(req, res, next ){
 	var file = req.params[0];
@@ -79,6 +82,7 @@ app.get('/home/*' , function(req, res, next ){
     }
 });
 
+
 app.get('/blog', function(req, res, next){
     blog.getPage(0, function(error, page){
         res.set('Content-Type', 'text/html');
@@ -93,7 +97,6 @@ app.get('/blog', function(req, res, next){
 });
 
 
-/*
 app.get('/blog/posts/:url', function(req, res, next){
     console.log(req.params.url);
 
@@ -105,7 +108,6 @@ app.get('/blog/posts/:url', function(req, res, next){
         }
     });
 });
-*/
 
 
 app.get('/blog/*' , function(req, res, next ) {
@@ -123,6 +125,7 @@ app.get('/blog/*' , function(req, res, next ) {
         });
     }
 });
+
 
 app.get('/*', function(req, res, next){
     res.status(404).redirect('http://mattmercedes.me/404');
