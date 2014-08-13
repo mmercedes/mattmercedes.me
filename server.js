@@ -98,8 +98,6 @@ app.get('/blog', function(req, res, next){
 
 
 app.get('/blog/posts/:url', function(req, res, next){
-    console.log(req.params.url);
-
     blog.getPost(req.params.url, function(error, post){
         if(error) res.status(404).redirect('http://mattmercedes.me/404');
         else {
@@ -111,8 +109,6 @@ app.get('/blog/posts/:url', function(req, res, next){
 
 
 app.get('/blog/*' , function(req, res, next ) {
-    console.log("HERE");
-
     var file = req.params[0];
 
     if(file in cache){

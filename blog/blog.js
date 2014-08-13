@@ -80,20 +80,14 @@ Blog.prototype.getPage = function(offset, callback){
 
 Blog.prototype.getPost = function(url, callback){
     this.findByUrl(url, function(error, results){
-            console.log(results);
-            if(results != null && results.length > 0) console.log(results[0]);
-
-
             if(error){
                 callback(error);
             }
-            else if(results.length == 0){
+            else if(results === null){
                 callback("no results");
             }
             else {
-                console.log("RESULTS: "+results[0]);
-                post = jade_post({post: results[0]});
-
+                post = jade_post({post: results});
                 callback(null, post);
             }
     });
