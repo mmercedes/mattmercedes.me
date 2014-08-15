@@ -97,7 +97,7 @@ app.get('/blog', function(req, res, next){
 });
 
 app.get('/blog/page/:offset', function(req, res, next){
-    blog.getPage(offset, function(error, page){
+    blog.getPage(req.params.offset, function(error, page){
         res.set('Content-Type', 'text/html');
         if(error){
             console.log(error);

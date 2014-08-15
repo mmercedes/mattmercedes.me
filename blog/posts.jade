@@ -17,21 +17,22 @@ html
     body
         div.site-wrapper
             div.site-wrapper-inner
-                div.page-header
-                    h1 <a href="http://mattmercedes.me"><span style="color:#E6DB74;">M</span><span style="color:#F92672">M</span></a> <a href="http://mattmercedes.me/blog"><small>.blog</small></a>
+                div.container-fluid
+                    div.page-header
+                        h1 <a href="http://mattmercedes.me"><span style="color:#E6DB74;">M</span><span style="color:#F92672">M</span></a><a href="http://mattmercedes.me/blog"><small>.blog</small></a>
 
-                div.list-group
-                    - each post in posts
-                        a.list-group-item(href= 'posts/'+ post.url)
-                            div
+                div.container-fluid
+                    div.list-group
+                        - each post in posts
+                            a.list-group-item(href= 'posts/'+ post.url)
                                 h4.list-group-item-heading= post.title
                                 p.list-group-item-text!= post.preview
 
-                ul.pager
-                    li
-                        a(href= 'http://mattmercedes.me/blog/page/'+ offsetp) Prev
-                    li
-                        a(href= 'http://mattmercedes.me/blog/page/'+ offsetn) Next
+                    ul.pager
+                        li
+                            a(href= 'http://mattmercedes.me/blog/page/'+ offsetp) Prev
+                        li
+                            a(href= 'http://mattmercedes.me/blog/page/'+ offsetn) Next
 
         script(src= 'https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js')
         script(src= 'http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js')
