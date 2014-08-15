@@ -71,7 +71,9 @@ Blog.prototype.getPage = function(offset, callback){
     this.findAll(function(error, results){
             if(error) callback(error);
             else {
-                page = jade_posts({ posts: results});
+                page = jade_posts({ posts: results,
+                                    offsetp: "0",
+                                    offsetn: "0"});
 
                 callback(null, page);
             }

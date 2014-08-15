@@ -172,6 +172,6 @@ body {
     text-align: left;
 }
 
-.li{
-    margin: 10px;
+.pager > li{
+    margin: 20px;
 }

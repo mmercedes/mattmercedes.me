@@ -96,6 +96,19 @@ app.get('/blog', function(req, res, next){
     });
 });
 
+app.get('/blog/page/:offset', function(req, res, next){
+    blog.getPage(offset, function(error, page){
+        res.set('Content-Type', 'text/html');
+        if(error){
+            console.log(error);
+            res.send("error : "+error.toString());
+        }
+        else {
+            res.send(page);
+        }
+    })
+});
+
 
 app.get('/blog/posts/:url', function(req, res, next){
     blog.getPost(req.params.url, function(error, post){
