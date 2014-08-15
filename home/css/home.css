@@ -137,12 +137,12 @@ body {
 /* Affix and center */
 
 @media (min-width: 768px) {
-  /* Pull out the header and footer
-  .masthead {
+  /* Pull out the header and footer */
+  .fix-top {
     position: fixed;
     top: 0;
   }
-  */
+
   .mastfoot {
     position: fixed;
     bottom: 0;
