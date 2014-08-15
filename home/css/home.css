@@ -137,11 +137,12 @@ body {
 /* Affix and center */
 
 @media (min-width: 768px) {
-  /* Pull out the header and footer */
+  /* Pull out the header and footer
   .masthead {
     position: fixed;
     top: 0;
   }
+  */
   .mastfoot {
     position: fixed;
     bottom: 0;
@@ -169,6 +170,12 @@ body {
 .thumbnail {
     background-color: #F2F8F8;
     padding-bottom: 0px;
+}
+
+.thumbnail:hover {
+    background-color: #FFF;
+    cursor: pointer;
+    border-color: #FFF;
 }
 
 .bigText {
