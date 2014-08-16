@@ -137,7 +137,7 @@ app.get('/blog/*' , function(req, res, next ){
 
 
 app.get('/img/*', function(req, res, next){
-    var file - req.params[0];
+    var file = req.params[0];
 
     res.sendfile( __dirname +'/img/'+ file);
 });
