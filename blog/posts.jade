@@ -6,33 +6,32 @@ html
         meta(name= 'viewport', content= 'width=device-width, initial-scale=1')
         meta(name= 'description', content= "Matt Mercedes' Blog")
         meta(name= 'author', content= 'Matt Mercedes')
+        link(rel= 'icon', href= 'http://mattmercedes.me/img/favicon.ico')
 
         title Matt Mercedes' Blog
 
         link(href= 'http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css', rel= 'stylesheet')
-        link(href= '../blog/css/blog.css', rel= 'stylesheet')
+        link(href= 'http://mattmercedes.me/blog/css/blog.css', rel= 'stylesheet')
 
 
 
     body
-        div.site-wrapper
-            div.site-wrapper-inner
-                div.container-fluid
-                    div.page-header
-                        h1 <a href="http://mattmercedes.me"><span style="color:#E6DB74;">M</span><span style="color:#F92672">M</span></a><a href="http://mattmercedes.me/blog"><small>.blog</small></a>
+        div.container-fluid
+            div.page-header
+                h1 <a href="http://mattmercedes.me"><span style="color:#E6DB74;">M</span><span style="color:#F92672">M</span></a><a href="http://mattmercedes.me/blog"><small>.blog</small></a>
 
-                div.container-fluid
-                    div.list-group
-                        - each post in posts
-                            a.list-group-item(href= 'posts/'+ post.url)
-                                h4.list-group-item-heading= post.title
-                                p.list-group-item-text!= post.preview
+        div.container-fluid
+            div.list-group
+                - each post in posts
+                    a.list-group-item(href= 'http://mattmercedes.me/blog/posts/'+ post.url)
+                        h4.list-group-item-heading= post.title
+                        p.list-group-item-text!= post.preview
 
-                    ul.pager
-                        li
-                            a(href= 'http://mattmercedes.me/blog/page/'+ offsetp) Prev
-                        li
-                            a(href= 'http://mattmercedes.me/blog/page/'+ offsetn) Next
+            ul.pager
+                li
+                    a(href= 'http://mattmercedes.me/blog/page/'+ offsetp) Prev
+                li
+                    a(href= 'http://mattmercedes.me/blog/page/'+ offsetn) Next
 
         script(src= 'https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js')
         script(src= 'http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js')

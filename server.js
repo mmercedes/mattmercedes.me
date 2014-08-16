@@ -121,7 +121,7 @@ app.get('/blog/posts/:url', function(req, res, next){
 });
 
 
-app.get('/blog/*' , function(req, res, next ) {
+app.get('/blog/*' , function(req, res, next ){
     var file = req.params[0];
 
     if(file in cache){
@@ -133,6 +133,13 @@ app.get('/blog/*' , function(req, res, next ) {
             res.status(404).redirect('http://mattmercedes.me/404');
         });
     }
+});
+
+
+app.get('/img/*', function(req, res, next){
+    var file - req.params[0];
+
+    res.sendfile( __dirname +'/img/'+ file);
 });
 
 
