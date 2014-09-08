@@ -13,6 +13,7 @@ var server = http.createServer(app);
 var cache = {};
 var cacheSize = 0;
 var MAX_CACHE_SIZE = 2000 * 1000;
+var CACHE_EXPIRATION = 172800;  // 2 days in seconds
 
 function cache_add(path, fileName, contentType){
     var stats = fs.statSync(path+fileName);
@@ -59,6 +60,7 @@ server.listen(port, ip, function (){
 
 app.get('/', function(req, res ){
     res.set('Content-Type', 'text/html');
+    res.set('Expires', new Date(Date.now() + CACHE_EXPIRATION).toUTCString());
     res.send(cache['home.html'].file);
 });
 
@@ -73,6 +75,7 @@ app.get('/home/*' , function(req, res, next ){
 
     if(file in cache){
         res.set('Content-Type', cache[file].type);
+        res.set('Expires', new Date(Date.now() + CACHE_EXPIRATION).toUTCString());
         res.send(cache[file].file);
     }
     else {
@@ -126,6 +129,7 @@ app.get('/blog/*' , function(req, res, next ){
 
     if(file in cache){
         res.set('Content-Type', cache[file].type);
+        res.set('Expires', new Date(Date.now() + CACHE_EXPIRATION).toUTCString());
         res.send(cache[file].file);
     }
     else {
