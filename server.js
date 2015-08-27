@@ -5,8 +5,6 @@ var port = parseInt(process.env.OPENSHIFT_NODEJS_PORT) || 8080;
 var fs = require('fs');
 var express = require('express');
 var http = require('http');
-var Blog = require('./blog/blog').Blog;
-var keys = require('./verification/keys.js').keys;
 var app = express();
 var server = http.createServer(app);
 
@@ -51,8 +49,6 @@ if (typeof ip === "undefined") {
 };
 
 
-blog = new Blog(keys.dbUser, keys.dbPass);
-
 server.listen(port, ip, function (){
     console.log("\n STARTED SERVER ON PORT " + port + "\n");
 });
@@ -80,60 +76,6 @@ app.get('/home/*' , function(req, res, next ){
     }
     else {
         res.sendfile( __dirname +'/home/'+ file, function(err){
-            res.status(404).redirect('http://mattmercedes.me/404');
-        });
-    }
-});
-
-
-app.get('/blog', function(req, res, next){
-    blog.getPage(0, function(error, page){
-        res.set('Content-Type', 'text/html');
-        if(error){
-            console.log(error);
-            res.send("error : "+error.toString());
-        }
-        else {
-            res.send(page);
-        }
-    });
-});
-
-app.get('/blog/page/:offset', function(req, res, next){
-    blog.getPage(req.params.offset, function(error, page){
-        res.set('Content-Type', 'text/html');
-        if(error){
-            console.log(error);
-            res.send("error : "+error.toString());
-        }
-        else {
-            res.send(page);
-        }
-    })
-});
-
-
-app.get('/blog/posts/:url', function(req, res, next){
-    blog.getPost(req.params.url, function(error, post){
-        if(error) res.status(404).redirect('http://mattmercedes.me/404');
-        else {
-            res.set('Content-Type', 'text/html');
-            res.send(post);
-        }
-    });
-});
-
-
-app.get('/blog/*' , function(req, res, next ){
-    var file = req.params[0];
-
-    if(file in cache){
-        res.set('Content-Type', cache[file].type);
-        res.set('Expires', new Date(Date.now() + CACHE_EXPIRATION).toUTCString());
-        res.send(cache[file].file);
-    }
-    else {
-        res.sendfile( __dirname +'/blog/'+ file, function(err){
             res.status(404).redirect('http://mattmercedes.me/404');
         });
     }
