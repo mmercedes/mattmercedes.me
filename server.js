@@ -39,8 +39,6 @@ cache_add("home/", "projects.html", "text/html");
 cache_add("home/", "css/home.css", "text/css");
 cache_add("home/", "css/resume.css", "text/css");
 cache_add("home/", "css/noisy_net.png", "image/png");
-cache_add("blog/", "css/noisy_net.png", "image/png");
-cache_add("blog/", "css/blog.css", "text/css");
 
 
 if (typeof ip === "undefined") {
